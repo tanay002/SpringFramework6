@@ -1,15 +1,18 @@
 package com.practice.dto;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
 import com.practice.Category;
 
+@Component
+@Qualifier
 public class FaceEquipment implements Category{
 
 	private Long id;
 	private String productName;
 	private Long price;
-	private Brand brand;
-	private CategoryDetails categoryDetails;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -28,38 +31,31 @@ public class FaceEquipment implements Category{
 	public void setPrice(Long price) {
 		this.price = price;
 	}
-	public Brand getBrand() {
-		return brand;
-	}
-	public void setBrand(Brand brand) {
-		this.brand = brand;
-	}
-
-	public FaceEquipment(long id, String productName, long price, Brand brand) {
+	public FaceEquipment(long id, String productName, long price) {
 		super();
 		this.id = id;
 		this.productName = productName;
 		this.price = price;
-		this.brand = brand;
-		setCategoryDetails();
 	}
 
 	@Override
 	public String toString() {
-		return "FaceEquipment [id=" + id + ", productName=" + productName + ", price=" + price + ", brand=" + brand
-				+ ", categoryDetails=" + categoryDetails + "]";
-	}
-	@Override
-	public void setCategoryDetails() {
-		CategoryDetails categoryDetails=new CategoryDetails(1L,"Cosmetics");
-		this.categoryDetails=categoryDetails;
+		return "FaceEquipment [id=" + id + ", productName=" + productName + ", price=" + price + 
+				"]";
 	}
 	
 	@Override
 	public void fetchDetails() {
 		
-		System.out.println("Cosmetics"+productName+" "+price+" "+brand.getBrandName()+" "+categoryDetails.getCategoryName());
-
+		System.out.println("fetching Details for Cosmetics Data");
+	}
+	@Override
+	public void setCategoryDetails() {
+		System.out.println("Setting Details for Cosmetics Data");
+		
+	}
+	public FaceEquipment() {
+		super();
 	}
 
 }
